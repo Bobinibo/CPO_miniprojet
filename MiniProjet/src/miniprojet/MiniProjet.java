@@ -3,30 +3,37 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package miniprojet;
-
+import java.util.ArrayList;
 /**
  *
  * @author alois
  */
+
 public class MiniProjet {
     public static void main(String[] args) {
-        Pion pionRouge = new Pion(Pion.ROUGE);
-        Pion pionBleu = new Pion(Pion.BLEU);
-        Pion pionVert = new Pion(Pion.VERT);
-        Pion pionJaune = new Pion(Pion.JAUNE);
-        Pion pionOrange = new Pion(Pion.ORANGE);
-        Pion pionMarron = new Pion(Pion.MARRON);
-        Pion pionBlanc = new Pion(Pion.BLANC);
-        Pion pionNoir = new Pion(Pion.NOIR);
+        // Couleurs disponibles pour les pions
+        ArrayList<Character> couleursDisponibles = new ArrayList<>();
+        couleursDisponibles.add('R'); // Rouge
+        couleursDisponibles.add('B'); // Bleu
+        couleursDisponibles.add('G'); // Vert
+        couleursDisponibles.add('Y'); // Jaune
+        couleursDisponibles.add('O'); // Orange
+        couleursDisponibles.add('P'); // Violet
 
-        System.out.println("Pion Rouge : " + pionRouge);
-        System.out.println("Pion Bleu : " + pionBleu);
-        System.out.println("Pion Vert : " + pionVert);
-        System.out.println("Pion Jaune : " + pionJaune);
-        System.out.println("Pion Orange : " + pionOrange);
-        System.out.println("Pion Marron : " + pionMarron);
-        System.out.println("Pion Blanc : " + pionBlanc);
-        System.out.println("Pion Noir : " + pionNoir);
+        // Génération d'une combinaison aléatoire
+        Combinaison combinaisonSecrete = Combinaison.genererAleatoire(4, couleursDisponibles);
+        System.out.println("Combinaison secrète générée : " + combinaisonSecrete);
+
+        // Création d'une combinaison proposée
+        Pion[] pionsProposes = {new Pion('R'), new Pion('B'), new Pion('G'), new Pion('Y')};
+        Combinaison combinaisonProposee = new Combinaison(pionsProposes);
+        System.out.println("Combinaison proposée : " + combinaisonProposee);
+
+        // Comparaison des combinaisons
+        int[] resultats = combinaisonSecrete.comparer(combinaisonProposee);
+        System.out.println("Bien placés (noirs) : " + resultats[0]);
+        System.out.println("Mal placés (blancs) : " + resultats[1]);
     }
 }
+
 
