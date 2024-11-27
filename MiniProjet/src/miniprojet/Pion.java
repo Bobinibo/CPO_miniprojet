@@ -10,26 +10,19 @@ package miniprojet;
  */
 
 public class Pion {
-    public static final char ROUGE = 'R';
-    public static final char BLEU = 'B';
-    public static final char VERT = 'V';
-    public static final char JAUNE = 'J';
-    public static final char ORANGE = 'O';
-    public static final char MARRON = 'M';
-    public static final char BLANC = 'W';
-    public static final char NOIR = 'N';
+    private char couleur; // Couleur du pion, représentée par un caractère (ex. 'R', 'B', etc.)
 
-    private char couleur; 
-
+    // Constructeur qui initialise un pion avec une couleur donnée
     public Pion(char couleur) {
         this.couleur = couleur;
     }
 
-    // Getter pour la couleur
+    // Méthode pour récupérer la couleur du pion
     public char getCouleur() {
         return couleur;
     }
 
+    // Méthode pour représenter le pion sous forme textuelle
     @Override
     public String toString() {
         return String.valueOf(couleur);
