@@ -4,30 +4,19 @@
  */
 package miniprojet;
 
-/**
- *
- * @author alois
- */
-
 public class Pion {
-    public static final char ROUGE = 'R';
-    public static final char BLEU = 'B';
-    public static final char VERT = 'V';
-    public static final char JAUNE = 'J';
-    public static final char ORANGE = 'O';
-    public static final char MARRON = 'M';
-    public static final char BLANC = 'W';
-    public static final char NOIR = 'N';
-
-    private char couleur; 
+    private char couleur;
 
     public Pion(char couleur) {
         this.couleur = couleur;
     }
 
-    // Getter pour la couleur
     public char getCouleur() {
         return couleur;
+    }
+
+    public void setCouleur(char couleur) {
+        this.couleur = couleur;
     }
 
     @Override
