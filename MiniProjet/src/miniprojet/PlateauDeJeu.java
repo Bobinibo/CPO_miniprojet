@@ -7,22 +7,20 @@ package miniprojet;
 import java.util.ArrayList;
 
 public class PlateauDeJeu {
-    private Combinaison combinaisonSecrete;
-    private ArrayList<Combinaison> tentatives;
-    private ArrayList<String> reponses;
-    private int nbToursMax;
+    private final Combinaison combinaisonSecrete;
+    private final ArrayList<Combinaison> tentatives = new ArrayList<>();
+    private final ArrayList<String> reponses = new ArrayList<>();
+    private final int nbToursMax;
 
     public PlateauDeJeu(Combinaison combinaisonSecrete, int nbToursMax) {
         this.combinaisonSecrete = combinaisonSecrete;
         this.nbToursMax = nbToursMax;
-        this.tentatives = new ArrayList<>();
-        this.reponses = new ArrayList<>();
     }
 
     public void proposerCombinaison(Combinaison tentative) {
         tentatives.add(tentative);
-        int[] indices = combinaisonSecrete.comparer(tentative);
-        reponses.add(indices[0] + " noirs, " + indices[1] + " blancs");
+        int[] resultat = combinaisonSecrete.comparer(tentative);
+        reponses.add(resultat[0] + " noirs, " + resultat[1] + " blancs");
     }
 
     public void afficherPlateau() {

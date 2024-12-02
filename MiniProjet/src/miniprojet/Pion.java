@@ -5,7 +5,7 @@
 package miniprojet;
 
 public class Pion {
-    private char couleur;
+    private final char couleur;
 
     public Pion(char couleur) {
         this.couleur = couleur;
@@ -13,10 +13,6 @@ public class Pion {
 
     public char getCouleur() {
         return couleur;
-    }
-
-    public void setCouleur(char couleur) {
-        this.couleur = couleur;
     }
 
     @Override

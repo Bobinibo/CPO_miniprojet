@@ -5,48 +5,47 @@
 package miniprojet;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 public class Combinaison {
-    private Pion[] elements;
-    private int taille;
+    private final Pion[] elements;
 
     public Combinaison(Pion[] elements) {
         this.elements = elements;
-        this.taille = elements.length;
     }
 
     public static Combinaison genererAleatoire(int taille, ArrayList<Character> couleursDisponibles) {
         Random random = new Random();
-        Pion[] elements = new Pion[taille];
+        Pion[] pions = new Pion[taille];
         for (int i = 0; i < taille; i++) {
-            char couleur = couleursDisponibles.get(random.nextInt(couleursDisponibles.size()));
-            elements[i] = new Pion(couleur);
+            char couleurAleatoire = couleursDisponibles.get(random.nextInt(couleursDisponibles.size()));
+            pions[i] = new Pion(couleurAleatoire);
         }
-        return new Combinaison(elements);
+        return new Combinaison(pions);
     }
 
     public int[] comparer(Combinaison autre) {
         int noirs = 0;
         int blancs = 0;
-        boolean[] verifieAutre = new boolean[taille];
-        boolean[] verifieCourant = new boolean[taille];
 
-        for (int i = 0; i < taille; i++) {
+        boolean[] marquesSecrete = new boolean[elements.length];
+        boolean[] marquesAutre = new boolean[elements.length];
+
+        for (int i = 0; i < elements.length; i++) {
             if (elements[i].getCouleur() == autre.elements[i].getCouleur()) {
                 noirs++;
-                verifieCourant[i] = true;
-                verifieAutre[i] = true;
+                marquesSecrete[i] = true;
+                marquesAutre[i] = true;
             }
         }
 
-        for (int i = 0; i < taille; i++) {
-            if (!verifieCourant[i]) {
-                for (int j = 0; j < taille; j++) {
-                    if (!verifieAutre[j] && elements[i].getCouleur() == autre.elements[j].getCouleur()) {
+        for (int i = 0; i < elements.length; i++) {
+            if (!marquesSecrete[i]) {
+                for (int j = 0; j < autre.elements.length; j++) {
+                    if (!marquesAutre[j] && elements[i].getCouleur() == autre.elements[j].getCouleur()) {
                         blancs++;
-                        verifieAutre[j] = true;
+                        marquesSecrete[i] = true;
+                        marquesAutre[j] = true;
                         break;
                     }
                 }
@@ -59,9 +58,10 @@ public class Combinaison {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (Pion pion : elements) {
-            sb.append(pion);
+        for (Pion p : elements) {
+            sb.append(p);
         }
         return sb.toString();
     }
 }
+
